@@ -11,8 +11,8 @@
 
 
 ### **STEP 1: Manifest.json file**
-- Before starting, verify your website (e.g., `echopitch.co.ke`) has a PWA (Progressive Web App) manifest:
-1. Visit: `https://echopitch.co.ke/manifest.json`
+- Before starting, verify your website (e.g., `bubblewrap.co.ke`) has a PWA (Progressive Web App) manifest:
+1. Visit: `https://bubblewrap.co.ke/manifest.json`
 2. If you see "Page not found" or similar, you need to create one
 > [!IMPORTANT]
 > This works for hosted websites (with a domain)
@@ -45,10 +45,10 @@ public_html/manifest.json
 ```json
 {
   // Full name of your app – appears on install prompts
-  "name": "EchoPitch",
+  "name": "BubbleWrap",
 
   // Short name used under the app icon on Android home screen
-  "short_name": "EchoPitch",
+  "short_name": "BubbleWrap",
 
   // What your web app is about – helps Play Store & users understand purpose
   "description": "A Kenyan football platform where players, fans, and coaches connect, showcase talent, and discover opportunities.",
@@ -84,7 +84,7 @@ public_html/manifest.json
 
   // Your app’s unique ID (package identifier)
   // IMPORTANT: Must match Bubblewrap package ID
-  "id": "ke.co.echopitch.app",
+  "id": "ke.co.bubblewrap.app",
 
   // Helps app stores categorize your PWA
   "categories": ["social", "sports"],
@@ -287,19 +287,19 @@ You should now see:
 ### **STEP 5: Setup Your TWA Project**
 - Run
 ```bash
-mkdir echopitch-twa
-cd echopitch-twa
+mkdir bubblewrap-twa
+cd bubblewrap-twa
 ```
 
 ### **Step 6: Initialize Your TWA Project**
 ### Initialize with your website URL
 ```bash
-bubblewrap init --manifest=https://echopitch.co.ke/manifest.json
+bubblewrap init --manifest=https://bubblewrap.co.ke/manifest.json
 ```
 
 **During initialization, you'll be asked:**
-1. **Application ID:** `ke.co.echopitch.app` (this is your package name)
-2. **Application Name:** `EchoPitch` (Should be a short name)
+1. **Application ID:** `ke.co.bubblewrap.app` (this is your package name)
+2. **Application Name:** `BubbleWrap` (Should be a short name)
 3. **Display Mode:** Choose `standalone`
 4. **Theme Color:** Enter hex code (e.g., `#000000`)
 5. **Background Color:** Enter hex code (e.g., `#ffffff`)
@@ -315,12 +315,12 @@ bubblewrap init --manifest=https://echopitch.co.ke/manifest.json
 > [!NOTE]
 -  If you run into a problem, delete the key:
 ```bash
-del C:\Users\LEWIS\echopitch-twa\android.keystore
+del C:\Users\LEWIS\bubblewrap-twa\android.keystore
 ```
 
 Recreate a fresh one by running:
 ```bash
-keytool -genkeypair -v ^  -keystore C:\Users\LEWIS\echopitch-twa\android.keystore ^  -alias unique_key ^  -keyalg RSA -keysize 2048 -validity 10000
+keytool -genkeypair -v ^  -keystore C:\Users\LEWIS\bubblewrap-twa\android.keystore ^  -alias unique_key ^  -keyalg RSA -keysize 2048 -validity 10000
 ```
 
 > [!NOTE]
@@ -331,16 +331,16 @@ keytool -genkeypair -v ^  -keystore C:\Users\LEWIS\echopitch-twa\android.keystor
 #### (i). **Digital Asset Links Setup**
 - Generate your SHA-256 fingerprint by running:
 ```bash
-keytool -list -v -keystore android.keystore -alias echopitchkey
+keytool -list -v -keystore android.keystore -alias bubblewrapkey
 ```
 
 > [!NOTE] 
-> `echopitch` is the signing key created earlier with 2 (keystore & alias) passwords. Replace it with your correct one.
+> `bubblewrap` is the signing key created earlier with 2 (keystore & alias) passwords. Replace it with your correct one.
 - Enter your keystore password:
 - After entering the correct password, you should see an output similar to:
 
 ```bash
-Alias name: echopitchkey
+Alias name: bubblewrapkey
 Creation date: Dec 5, 2025
 Entry type: PrivateKeyEntry
 Certificate chain length: 1
@@ -367,13 +367,13 @@ KeyIdentifier [
 ]
 ```
 
-#### (ii). **Create `assetlinks.json` inside the root project directory (echopitch-twa):**
+#### (ii). **Create `assetlinks.json` inside the root project directory (bubblewrap-twa):**
 ```json
 [{
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "com.echopitch.mobile",
+    "package_name": "com.bubblewrap.mobile",
     "sha256_cert_fingerprints": [
       "YOUR_SHA256"
     ]
@@ -384,7 +384,7 @@ KeyIdentifier [
 - In this case, YOUR_SHA256=`F6:EB:2C:0B:F3:90:94:25:AB:3B:5D:3C:21:2A:18:2A:16:CE:F7:F1:DE:26:4C:17:C6:F4:34:63:6B:72:94:FF`
 
 #### (iii). **Upload to your website:**
-- File must be at: `https://echopitch.co.ke/.well-known/assetlinks.json`
+- File must be at: `https://bubblewrap.co.ke/.well-known/assetlinks.json`
 > [!NOTE]
 
 > NB: To view hidden files (CPANEL), also known as "dotfiles" (because their names start with a dot, like `.well-known, .htaccess`), in cPanel's File Manager:
@@ -404,17 +404,17 @@ KeyIdentifier [
   {
   // The unique Android package name for your TWA app.
   // Format: country.domain.appname (must match Play Store requirements)
-  "packageId": "ke.co.echopitch.app",
+  "packageId": "ke.co.bubblewrap.app",
 
   // The website domain that your TWA will load.
   // Must match EXACTLY the site that has the manifest.json.
-  "host": "echopitch.co.ke",
+  "host": "bubblewrap.co.ke",
 
   // App name displayed under your app icon.
-  "name": "EchoPitch",
+  "name": "BubbleWrap",
 
   // Name displayed in the Android launcher (can be same as "name").
-  "launcherName": "EchoPitch",
+  "launcherName": "BubbleWrap",
 
   // How the app appears: "standalone" = looks like a real native app.
   "display": "standalone",
@@ -447,13 +447,13 @@ KeyIdentifier [
   "startUrl": "/index.php?utm_source=web_app",
 
   // Icon used for Android (512px recommended).
-  "iconUrl": "https://echopitch.co.ke/assets/images/App/android-512.png",
+  "iconUrl": "https://bubblewrap.co.ke/assets/images/App/android-512.png",
 
   // Maskable icon for adaptive shapes (circle, squircle, etc.).
-  "maskableIconUrl": "https://echopitch.co.ke/assets/images/App/android-256.png",
+  "maskableIconUrl": "https://bubblewrap.co.ke/assets/images/App/android-256.png",
 
   // Single-color icon used for Android monochrome UI.
-  "monochromeIconUrl": "https://echopitch.co.ke/assets/images/App/monochrome-384.png",
+  "monochromeIconUrl": "https://bubblewrap.co.ke/assets/images/App/monochrome-384.png",
 
   // Controls how long the splash screen fades out.
   "splashScreenFadeOutDuration": 300,
@@ -461,10 +461,10 @@ KeyIdentifier [
   // Android signing key information — REQUIRED for building a real APK/AAB.
   "signingKey": {
     // Path to your keystore file on your computer.
-    "path": "C:\\Users\\LEWIS\\echopitch-twa\\android.keystore",
+    "path": "C:\\Users\\LEWIS\\bubblewrap-twa\\android.keystore",
     
     // Alias inside your keystore (must match what you created).
-    "alias": "echopitchkey"
+    "alias": "bubblewrapkey"
   },
 
   // Version name shown to users.
@@ -481,7 +481,7 @@ KeyIdentifier [
 
   // Link to the LIVE web manifest.json on your website.
   // This must always be reachable.
-  "webManifestUrl": "https://echopitch.co.ke/manifest.json",
+  "webManifestUrl": "https://bubblewrap.co.ke/manifest.json",
 
   // If TWA fails, fallback to Chrome Custom Tabs.
   "fallbackType": "customtabs",
@@ -509,7 +509,7 @@ KeyIdentifier [
   "isMetaQuest": false,
 
   // Full domain scope allowed for the TWA.
-  "fullScopeUrl": "https://echopitch.co.ke/",
+  "fullScopeUrl": "https://bubblewrap.co.ke/",
 
   // Minimum Android SDK supported (21 = Android 5.0).
   "minSdkVersion": 21,
@@ -561,7 +561,7 @@ You'll be asked for:
 
 ### **Step 9: Find Your APK**
 - After build completes, find your APK:
-- Look in your-project-folder "``echopitch-twa``"
+- Look in your-project-folder "``bubblewrap-twa``"
 The APK will be in the same folder or a subfolder called "build"
 
 #### Navigate to build folder (Terminal)
@@ -587,7 +587,7 @@ cd ./build
     - Install and test
 
 ### **Step 10: Updating Your APK**
-- Any time you make new changes to your app (*NOT THE WEBSITE!*), simply open terminal in the project directory, in this case `echopitch-twa` and run the commands below in order:
+- Any time you make new changes to your app (*NOT THE WEBSITE!*), simply open terminal in the project directory, in this case `bubblewrap-twa` and run the commands below in order:
 ```bash
 bubblewrap update
 bubblewrap build
@@ -596,14 +596,14 @@ bubblewrap build
 
 You should get an output similar the one below:
 ```bash
-PS C:\Users\LEWIS\echopitch-twa> bubblewrap build
+PS C:\Users\LEWIS\bubblewrap-twa> bubblewrap build
 ,-----.        ,--.  ,--.  ,--.
 |  |) /_,--.,--|  |-.|  |-.|  |,---.,--.   ,--,--.--.,--,--.,---.
 |  .-.  |  ||  | .-. | .-. |  | .-. |  |.'.|  |  .--' ,-.  | .-. |
 |  '--' '  ''  | `-' | `-' |  \   --|   .'.   |  |  \ '-'  | '-' '
 `------' `----' `---' `---'`--'`----'--'   '--`--'   `--`--|  |-'
                                                            `--'
-Please, enter passwords for the keystore C:\Users\LEWIS\echopitch-twa\android.keystore and alias echopitchkey.
+Please, enter passwords for the keystore C:\Users\LEWIS\bubblewrap-twa\android.keystore and alias bubblewrapkey.
 
 ? Password for the Key Store: ************
 ? Password for the Key: ************
@@ -611,7 +611,7 @@ Please, enter passwords for the keystore C:\Users\LEWIS\echopitch-twa\android.ke
 Building the Android App...
         - Generated Android APK at ./app-release-signed.apk
         - Generated Android App Bundle at ./app-release-bundle.aab
-PS C:\Users\LEWIS\echopitch-twa> bubblewrap update
+PS C:\Users\LEWIS\bubblewrap-twa> bubblewrap update
 ,-----.        ,--.  ,--.  ,--.
 |  |) /_,--.,--|  |-.|  |-.|  |,---.,--.   ,--,--.--.,--,--.,---.
 |  .-.  |  ||  | .-. | .-. |  | .-. |  |.'.|  |  .--' ,-.  | .-. |
@@ -625,14 +625,14 @@ Generating Android Project.
 
 Project updated successfully.
 Build it by running bubblewrap build
-PS C:\Users\LEWIS\echopitch-twa> bubblewrap build
+PS C:\Users\LEWIS\bubblewrap-twa> bubblewrap build
 ,-----.        ,--.  ,--.  ,--.
 |  |) /_,--.,--|  |-.|  |-.|  |,---.,--.   ,--,--.--.,--,--.,---.
 |  .-.  |  ||  | .-. | .-. |  | .-. |  |.'.|  |  .--' ,-.  | .-. |
 |  '--' '  ''  | `-' | `-' |  \   --|   .'.   |  |  \ '-'  | '-' '
 `------' `----' `---' `---'`--'`----'--'   '--`--'   `--`--|  |-'
                                                            `--'
-Please, enter passwords for the keystore C:\Users\LEWIS\echopitch-twa\android.keystore and alias echopitchkey.
+Please, enter passwords for the keystore C:\Users\LEWIS\bubblewrap-twa\android.keystore and alias bubblewrapkey.
 
 ? Password for the Key Store: ************
 ? Password for the Key: ************
@@ -648,7 +648,7 @@ Building the Android App...
 
 Take a screenshot of your homepage and upload to:
 ```
-https://echopitch.co.ke/assets/images/App/screenshot-1.jpg
+https://bubblewrap.co.ke/assets/images/App/screenshot-1.jpg
 ```
 This helps app stores and makes it feel more like a real app.
 
@@ -714,7 +714,7 @@ AddType application/javascript .js
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#FF770A">
-    <title>EchoPitch - Connection Required</title>
+    <title>BubbleWrap - Connection Required</title>
     <style>
         * {
             margin: 0;
@@ -927,8 +927,8 @@ AddType application/javascript .js
         <!-- Logo Section -->
         <div class="logo">
             <!-- Using your app icon as logo -->
-            <img src="/assets/images/logo-s.png" alt="EchoPitch" class="logo-img" onerror="this.style.display='none'">
-            <div class="logo-text">EchoPitch</div>
+            <img src="/assets/images/logo-s.png" alt="BubbleWrap" class="logo-img" onerror="this.style.display='none'">
+            <div class="logo-text">BubbleWrap</div>
             <div class="logo-subtext">"Your Game. Your glory"</div>
         </div>
         
@@ -940,7 +940,7 @@ AddType application/javascript .js
         <!-- Main Message -->
         <h1>Connection Required</h1>
         <div class="message">
-            EchoPitch needs an active internet connection to provide real-time updates, match data, and team coordination.
+            BubbleWrap needs an active internet connection to provide real-time updates, match data, and team coordination.
         </div>
         
         <!-- Help Tips -->
@@ -1033,13 +1033,13 @@ AddType application/javascript .js
 
 ### **3. Create `sw.js` in root directory:**
 ```javascript
-// EchoPitch Service Worker - Aggressive Caching
-const CACHE_NAME = 'echopitch-app-v1';
+// BubbleWrap Service Worker - Aggressive Caching
+const CACHE_NAME = 'bubblewrap-app-v1';
 const OFFLINE_URL = '/offline.html';
 
 // Install - Cache critical files immediately
 self.addEventListener('install', event => {
-  console.log('[SW] Installing EchoPitch Service Worker');
+  console.log('[SW] Installing BubbleWrap Service Worker');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll([
@@ -1128,7 +1128,7 @@ self.addEventListener('message', event => {
   }
 });
 
-console.log('[SW] EchoPitch Service Worker loaded');
+console.log('[SW] BubbleWrap Service Worker loaded');
 ```
 
 
@@ -1212,7 +1212,7 @@ Disallow: /private/
 Crawl-delay: 2
 
 # Sitemap (create this later)
-# Sitemap: https://echopitch.co.ke/sitemap.xml
+# Sitemap: https://bubblewrap.co.ke/sitemap.xml
 ```
 
 - `User-agent: *` = Applies to all search engines (Google, Bing, etc.)
@@ -1223,10 +1223,10 @@ Crawl-delay: 2
 ### **6. Update `twa-manifest.json`**
 ```json
 {
-  "packageId": "ke.co.echopitch.app",
-  "host": "echopitch.co.ke",
-  "name": "EchoPitch",
-  "launcherName": "EchoPitch",
+  "packageId": "ke.co.bubblewrap.app",
+  "host": "bubblewrap.co.ke",
+  "name": "BubbleWrap",
+  "launcherName": "BubbleWrap",
   "display": "standalone",
   "themeColor": "#FF770A",
   "themeColorDark": "#FF770A",
@@ -1237,19 +1237,19 @@ Crawl-delay: 2
   "backgroundColor": "#FFFFFF",
   "enableNotifications": true,
   "startUrl": "/login.php?app_mode=1",
-  "iconUrl": "https://echopitch.co.ke/assets/images/App/android-512.png",
-  "maskableIconUrl": "https://echopitch.co.ke/assets/images/App/android-256.png",
-  "monochromeIconUrl": "https://echopitch.co.ke/assets/images/App/monochrome-384.png",
+  "iconUrl": "https://bubblewrap.co.ke/assets/images/App/android-512.png",
+  "maskableIconUrl": "https://bubblewrap.co.ke/assets/images/App/android-256.png",
+  "monochromeIconUrl": "https://bubblewrap.co.ke/assets/images/App/monochrome-384.png",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
-    "path": "C:\\Users\\LEWIS\\echopitch-twa\\android.keystore",
-    "alias": "echopitchkey"
+    "path": "C:\\Users\\LEWIS\\bubblewrap-twa\\android.keystore",
+    "alias": "bubblewrapkey"
   },
   "appVersionName": "v1.21",
   "appVersionCode": 1,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
-  "webManifestUrl": "https://echopitch.co.ke/manifest.json",
+  "webManifestUrl": "https://bubblewrap.co.ke/manifest.json",
   "fallbackType": "customtabs",
   "features": {
     "locationDelegation": {
@@ -1262,7 +1262,7 @@ Crawl-delay: 2
   "enableSiteSettingsShortcut": false,
   "isChromeOSOnly": false,
   "isMetaQuest": false,
-  "fullScopeUrl": "https://echopitch.co.ke/",
+  "fullScopeUrl": "https://bubblewrap.co.ke/",
   "minSdkVersion": 21,
   "orientation": "portrait",
   "fingerprints": [
@@ -1286,8 +1286,8 @@ Crawl-delay: 2
 ### **7. Update `manifest.json`**
 ```json
 {
-  "name": "EchoPitch",
-  "short_name": "EchoPitch",
+  "name": "BubbleWrap",
+  "short_name": "BubbleWrap",
   "description": "A Kenyan football platform where players, fans, and coaches connect, showcase talent, and discover opportunities.",
   "lang": "en-KE",
   "dir": "ltr",
@@ -1298,7 +1298,7 @@ Crawl-delay: 2
   "orientation": "portrait",
   "theme_color": "#FF770A",
   "background_color": "#FFFFFF",
-  "id": "ke.co.echopitch.app",
+  "id": "ke.co.bubblewrap.app",
   "categories": ["social", "sports"],
   "screenshots": [
     {
@@ -1336,7 +1336,7 @@ Crawl-delay: 2
 
 
 #### **STEP 8. REBUILD APK**
-- Open terminal in the project directory, in this case `echopitch-twa` and run the commands below in order:
+- Open terminal in the project directory, in this case `bubblewrap-twa` and run the commands below in order:
 ```bash
 bubblewrap update
 bubblewrap build
@@ -1345,14 +1345,14 @@ bubblewrap build
 
 You should get an output similar the one below:
 ```bash
-PS C:\Users\LEWIS\echopitch-twa> bubblewrap build
+PS C:\Users\LEWIS\bubblewrap-twa> bubblewrap build
 ,-----.        ,--.  ,--.  ,--.
 |  |) /_,--.,--|  |-.|  |-.|  |,---.,--.   ,--,--.--.,--,--.,---.
 |  .-.  |  ||  | .-. | .-. |  | .-. |  |.'.|  |  .--' ,-.  | .-. |
 |  '--' '  ''  | `-' | `-' |  \   --|   .'.   |  |  \ '-'  | '-' '
 `------' `----' `---' `---'`--'`----'--'   '--`--'   `--`--|  |-'
                                                            `--'
-Please, enter passwords for the keystore C:\Users\LEWIS\echopitch-twa\android.keystore and alias echopitchkey.
+Please, enter passwords for the keystore C:\Users\LEWIS\bubblewrap-twa\android.keystore and alias bubblewrapkey.
 
 ? Password for the Key Store: ************
 ? Password for the Key: ************
@@ -1360,7 +1360,7 @@ Please, enter passwords for the keystore C:\Users\LEWIS\echopitch-twa\android.ke
 Building the Android App...
         - Generated Android APK at ./app-release-signed.apk
         - Generated Android App Bundle at ./app-release-bundle.aab
-PS C:\Users\LEWIS\echopitch-twa> bubblewrap update
+PS C:\Users\LEWIS\bubblewrap-twa> bubblewrap update
 ,-----.        ,--.  ,--.  ,--.
 |  |) /_,--.,--|  |-.|  |-.|  |,---.,--.   ,--,--.--.,--,--.,---.
 |  .-.  |  ||  | .-. | .-. |  | .-. |  |.'.|  |  .--' ,-.  | .-. |
@@ -1374,14 +1374,14 @@ Generating Android Project.
 
 Project updated successfully.
 Build it by running bubblewrap build
-PS C:\Users\LEWIS\echopitch-twa> bubblewrap build
+PS C:\Users\LEWIS\bubblewrap-twa> bubblewrap build
 ,-----.        ,--.  ,--.  ,--.
 |  |) /_,--.,--|  |-.|  |-.|  |,---.,--.   ,--,--.--.,--,--.,---.
 |  .-.  |  ||  | .-. | .-. |  | .-. |  |.'.|  |  .--' ,-.  | .-. |
 |  '--' '  ''  | `-' | `-' |  \   --|   .'.   |  |  \ '-'  | '-' '
 `------' `----' `---' `---'`--'`----'--'   '--`--'   `--`--|  |-'
                                                            `--'
-Please, enter passwords for the keystore C:\Users\LEWIS\echopitch-twa\android.keystore and alias echopitchkey.
+Please, enter passwords for the keystore C:\Users\LEWIS\bubblewrap-twa\android.keystore and alias bubblewrapkey.
 
 ? Password for the Key Store: ************
 ? Password for the Key: ************
