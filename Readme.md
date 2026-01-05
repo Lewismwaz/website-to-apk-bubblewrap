@@ -1,3 +1,15 @@
+# Convert Website to Android APK using Bubblewrap
+
+> [!IMPORTANT]
+> This documentation is intended **only for websites or Progressive Web Apps (PWAs) that are already hosted and publicly accessible**.
+>
+> Bubblewrap and Trusted Web Activities (TWA) require a **live HTTPS website with a valid domain**.  
+> Local files, offline HTML projects, or unhosted websites are **not supported**. Before proceeding, ensure that:
+> - Your website is live and accessible online
+> - HTTPS is properly configured
+> - The domain matches the Digital Asset Links configuration
+
+
 ### **STEP 1: Manifest.json file**
 - Before starting, verify your website (e.g., `echopitch.co.ke`) has a PWA (Progressive Web App) manifest:
 1. Visit: `https://echopitch.co.ke/manifest.json`
@@ -139,9 +151,9 @@ sudo npm install -g @bubblewrap/cli
 ```
 
 
-### **STEP 4: Install necessary Dependencies
+### **STEP 4: Install necessary Dependencies**
 - Bubblewrap + Android SDK **cannot run without JDK 17** (NOT Java 8, NOT Java 11).
-## **(a)
+## **(a)**
 #### (a) (i) — Download Command-line Tools
 1. Go to the official Android download page:  
     **https://developer.android.com/studio#command-tools**
@@ -242,7 +254,7 @@ openjdk version "17.0.10" …
 ```
 If yes → Java is installed correctly.✅
 
-###  **4 — SDK Manager
+###  **4 — SDK Manager**
 ### **(iii) — Install ZIPALIGN + Build Tools (Now That sdkmanager Exists)**
 - Navigate back:
 ```bash
@@ -371,7 +383,7 @@ KeyIdentifier [
 
 - In this case, YOUR_SHA256=`F6:EB:2C:0B:F3:90:94:25:AB:3B:5D:3C:21:2A:18:2A:16:CE:F7:F1:DE:26:4C:17:C6:F4:34:63:6B:72:94:FF`
 
-#### (iii). **Upload to your website:
+#### (iii). **Upload to your website:**
 - File must be at: `https://echopitch.co.ke/.well-known/assetlinks.json`
 > [!NOTE]
 
@@ -1123,10 +1135,10 @@ console.log('[SW] EchoPitch Service Worker loaded');
 ### **4. Update `login.php` or and `index.php` with Service Worker Registration:**
 
 - Add this to the `<head>` in meta section:
-  ```php
+```php
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-  ```   
+```   
   
 - Add this to the bottom of `login.php` or `index.php` (before `</body>`):
 ```php
@@ -1203,7 +1215,7 @@ Crawl-delay: 2
 # Sitemap: https://echopitch.co.ke/sitemap.xml
 ```
 
-- - `User-agent: *` = Applies to all search engines (Google, Bing, etc.)
+- `User-agent: *` = Applies to all search engines (Google, Bing, etc.)
 - `Allow: /` = Allows crawling of entire site
 - `Disallow: /admin/` = Blocks crawling of admin section
 
@@ -1417,4 +1429,7 @@ Publishing takes 1–3 hours typically.
 > - Provide genuine value
 >  - Load fast
 > - Not collect user data without disclosure
+
+
+
 
